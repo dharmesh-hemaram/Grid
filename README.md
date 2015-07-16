@@ -7,21 +7,20 @@ It contain sortable, selectable, filterable, expandable, pagination.
 
 #E.g.
 
-var headers = [
-		{text:"Name",key:"name",isSortable:true,isFilterable:true,isResizable:true,css:{width:230}},
+	var headers = [{text:"Name",key:"name",isSortable:true,isFilterable:true,isResizable:true,css:{width:230}},
 		{text:"Address",key:"address",isSortable:true,isFilterable:true,css:{width:215}}];
 		
-		var div = $( "<div/>" )
+	$( "<div/>" )
 		.appendTo("#container")
 		.grid({
-		responseData:[],
-		headers:headers,
-		isSelectable:isSelectable,
-		isSortable:true,
-		isCountChange:true,
-		isFilterable:true,
-		isViewAll:true,
-		withScroll:true
-		start:0,
-		count:10
-	});
+			responseData:[],
+			headers:headers,
+			isSelectable:isSelectable,
+			isSortable:true,
+			isCountChange:true,
+			isFilterable:true,
+			isViewAll:true,
+			withScroll:true
+			start:0,
+			count:10
+		});
