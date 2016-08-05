@@ -1,1 +1,13 @@
-{"categories":[{"name":"hello"},{"name":"wordl"}]}
+{"categories":[
+	{"name":"Beer"},
+	{"name":"Chocolate"},
+	{"name":"Cocktail"},
+	{"name":"Coffee & Tea"},
+	{"name":"Float & Shake"},
+	{"name":"Homemade Liqueur"},
+	{"name":"Mixed Drink"},
+	{"name":"Other"},
+	{"name":"Punch & Party Drink"},
+	{"name":"Shot"},
+	{"name":"Soft Drink"}
+]}
