@@ -4,10 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>jQuery Grid by dharmesh-hemaram</title>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width">
+	
+	<link rel="Stylesheet" href="stylesheets/main.css" type="text/css">
+	<link rel="stylesheet" href="font/css/font-awesome.min.css">
+		
+	<script src="javascripts/grid.js"></script>
+	<script src="javascripts/data.js"></script>
+	<script src="javascripts/common.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -29,29 +37,71 @@
       </header>
       <section>
         <h3>
-<a id="welcome-to-jquer-grid-pages" class="anchor" href="#welcome-to-jquer-grid-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to jQuer Grid Pages.</h3>
+<a id="welcome-to-jquer-grid-pages" class="anchor" href="#welcome-to-jquer-grid-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to jQuer Grid Plugin.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can @mention a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<div class="x-tab">
+			<div class="x-row">
+				<div class="x-cell" style="width:50%;padding:10px">
+					<h1 id="simple-grid">SIMPLE GRID</h1>
+					<div id="simple-grid-cont"></div>
+					<br/>
+					<div class="text">All output is printed in console</div>
+					<button onClick='console.log(simpleGrid.grid("data"))' class="yellow btn">DATA</button>
+					<button id="selectAll" class="yellow btn">SELECT ALL</button>
+					<button onClick='console.log(simpleGrid.grid("removeSelected"))' class="yellow btn">REMOVE SELECTED</button>
+					<button onClick='console.log(simpleGrid.grid("getEdited"))' class="yellow btn">GET EDITED</button>
+					<button onClick='console.log(simpleGrid.grid("getRemoved"))' class="yellow btn">GET REMOVED</button>
+					<!-- examples -->
+					<script type="text/javascript">
+						var selectAll = true;
+						
+						$("#selectAll").on("click",function(){
+							simpleGrid.grid("selectAll",selectAll);
+							if(selectAll){
+								$(this).text("deselect all");
+							}else{
+								$(this).text("select all");
+							}
+							selectAll = selectAll ? false : true;
+						});
+						
+						$(function() {
+							var states = [{n: 'AL'}, {n: 'AR'}, {n: 'AZ'}, {n: 'CA'}, {n: 'CT'}, {n: 'DC'}, {n: 'DE'}, {n: 'FL'}, {n: 'GA'}, {n: 'ID'}, {n: 'IL'}, {n: 'IN'}, {n: 'KS'}, {n: 'KY'}, {n: 'LA'}, {n: 'MA'}, {n: 'MD'}, {n: 'MI'}, {n: 'MN'}, {n: 'MO'}, {n: 'MS'}, {n: 'MT'}, {n: 'NC'}, {n: 'ND'}, {n: 'NJ'}, {n: 'NM'}, {n: 'NV'}, {n: 'NY'}, {n: 'OH'}, {n: 'OK'}, {n: 'PA'}, {n: 'RI'}, {n: 'SC'}, {n: 'SD'}, {n: 'TN'}, {n: 'TX'}, {n: 'UT'}, {n: 'VA'}, {n: 'WA'}, {n: 'WI'}, {n: 'WV'}];
+							var headers = [{text: "Rank", key: "rank", isSortable: true, isFilterable: true, isResizable: true, css: {width: 90}}, 
+											{text: "Company*", key: "company", isSortable: true, isFilterable: true, isEditable: true}, 
+											{text: "State*", key: "state", isSortable: true, isFilterable: true, css: {width: 90}, isEditable: true, selectOptions: states}, 
+											{text: "Revenues", key: "revenues", isSortable: true, isFilterable: true, css: {width: 90}},
+											{text: "Profits", key: 'profits', isSortable: true, isFilterable: true, css: {width: 90}}];
+							simpleGrid = $("<div/>")
+								.appendTo("#simple-grid-cont")
+								.grid({responseData: simpleData, 
+									headers: headers, 
+									isSelectable: true, 
+									isFilterable: true, 
+									isViewAll: true});
+						});
+					</script>
+				</div>
+				</div>
+				<div class="x-row">
+				<div class="x-cell" style="padding:10px">
+					<h1 id="tree-grid">TREE GRID</h1>
+					<div id="tree-grid-cont"></div>
+					<!-- examples -->
+					<script type="text/javascript">
+						$(function() {
+							var headers = [{text: "Rank", key: "rank", isSortable: true, isFilterable: true, isResizable: true, css: {width: 90}}, 
+										{text: "Company", key: "company", isSortable: true, isFilterable: true}, 
+										{text: "Revenues", key: "revenues", isSortable: true, isFilterable: true, css: {width: 90}},
+										{text: "Profits", key: 'profits', isSortable: true, isFilterable: true, css: {width: 90}}];
+							$("<div/>")
+								.appendTo("#tree-grid-cont")
+								.treegrid({responseData: treeData, headers: headers, isFilterable: true, isExpandable: true});
+						});
+					</script>
+				</div>
+			</div>
+		</div>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/dharmesh-hemaram">dharmesh-hemaram</a></p>
